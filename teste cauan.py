@@ -40,3 +40,5 @@ ax.plot_surface(x[0,:], x[1,:], z, cmap=cm.Spectral)
 ax.plot(xs[:,1], xs[1,:], zs, 'o', c = 'b', zorder=100)
 plt.axis('off')
 plt.show()
+
+#teste
