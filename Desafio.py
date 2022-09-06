@@ -1,35 +1,30 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-def dk (grad, x1, x2):
-    return (grad/np.sqrt(pow(x1, 2) + pow(x2, 2)) * -1)
-
 def grad(x1, x2):  
     gx1 = 2*x1 - 2
     gx2 = 4*x2
     
     return [gx1, gx2]
 
-#função: min f(x1, x2) = (x1 - 1)² + 2x2²
 def fun_x(x1, x2):
-    return ((x1 - 1) ** 2) + (2 * (x2**2))
-
+    return pow((x1 - 1), 2) + (2 * pow(x2, 2))
 
 #x1, x1 = -10 < x1, x2 < 10
 x1 = np.linspace(-10, 10, num = 100)
 x2 = np.linspace(-10, 10, num = 100)
 
+#ponto inicial
+Xk = [10, 10]
+i = 0
+while (i < 10):
+    gk = grad(Xk[0], Xk[1])
+    dk = (gk/np.sqrt(pow(Xk[0], 2) + pow(Xk[1], 2)) * -1)
+    alpha = (dk[0] - Xk[0] * dk[0]) - (2 * Xk[1] * dk[1]) / pow(dk[0], 2) + (2 * pow(dk[1], 2))
+    
+    Xk = Xk + alpha * dk
+    i = i + 1
+    print(i,'//', Xk[0],'//', Xk[1],'//', gk,'//', dk,'//', alpha)
+
 x1, x2 = np.meshgrid(x1, x2)
 
-#pt 1
-#plotar a função principal
-
-fig, ax = plt.subplots()
-
-ax.contour(x1, x2, fun_x(x1, x2))
-ax.set_xlabel('X1')
-ax.set_ylabel('X2')
-ax.plot(1, 0, "ro")
-ax.set_title('Curvas de nivel\nFunção Inicial')
-
-plt.show()
