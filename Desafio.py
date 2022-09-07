@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import math
 
 def grad(x1, x2):  
     gx1 = (2*x1) - 2
@@ -16,16 +15,18 @@ x1 = np.linspace(-10, 10, num = 100)
 x2 = np.linspace(-10, 10, num = 100)
 
 x1, x2 = np.meshgrid(x1, x2)
+
 #ponto inicial
 X1, X2 = 10, 10
 
 x2k = [10]
 y2k = [10]
 
+#algoritmo
 i = 0
 while (i < 100):
     gk = grad(X1, X2)
-    norma = math.sqrt(pow(gk[0], 2) + pow(gk[1], 2))
+    norma = np.sqrt(pow(gk[0], 2) + pow(gk[1], 2))
     
     if norma <= 0.01:
         break
@@ -43,8 +44,6 @@ while (i < 100):
 
     print(i,'//', X1,'//', X2,'//', gk,'//', dk,'//',alpha,'//', norma)
 
-
-#pt 1
 #plotar a função principal
 
 fig = plt.figure(figsize = plt.figaspect(.4))
@@ -69,7 +68,7 @@ ax = fig.add_subplot(1, 2, 2, projection = '3d')
 ax.set_xlabel('X1')
 ax.set_ylabel('X2')
 surf = ax.plot_surface(x1, x2, fun_x(x1, x2), cmap='bone')
-ax.plot(x2k, y2k, 'o-')
+
 ax.plot(1, 0, "ro")
 ax.set_title('Projeção 3D\nFunção Inicial')
 
