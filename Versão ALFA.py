@@ -48,3 +48,17 @@ ax.set_title('Projeção 3D\nFunção Inicial')
 
 
 plt.show()
+
+
+#pt 1
+#plotar a função principal
+fig, ax = plt.subplots()
+
+ax.contour(x1, x2, fun_x(x1, x2))
+plt.plot(x2k, y2k, 'o-', color='red', label='Descida do Gradiente')
+ax.set_xlabel('X1')
+ax.set_ylabel('X2')
+ax.plot(1, 0, "ro")
+ax.set_title('Curvas de nivel\nFunção Inicial')
+plt.legend()
+plt.show()

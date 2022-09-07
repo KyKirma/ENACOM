@@ -19,8 +19,8 @@ x1, x2 = np.meshgrid(x1, x2)
 #ponto inicial
 X1, X2 = 10, 10
 
-x2k = []
-y2k = []
+x2k = [10]
+y2k = [10]
 
 i = 0
 while (i < 100):
@@ -46,13 +46,31 @@ while (i < 100):
 
 #pt 1
 #plotar a função principal
-fig, ax = plt.subplots()
 
-ax.contour(x1, x2, fun_x(x1, x2))
-plt.plot(x2k, y2k, 'o-', color='purple', label='Descida do Gradiente')
+fig = plt.figure(figsize = plt.figaspect(.4))
+
+ax = fig.add_subplot(1, 2, 1)
+
+
+CS = ax.contour(x1, x2, fun_x(x1, x2), cmap='bone')
 ax.set_xlabel('X1')
 ax.set_ylabel('X2')
+ax.clabel(CS)
 ax.plot(1, 0, "ro")
 ax.set_title('Curvas de nivel\nFunção Inicial')
+plt.plot(x2k, y2k, 'o-', color='red', label='Descida do Gradiente')
+plt.legend()
+
+
+#EXTRA: função inicial em visualização 3D
+
+ax = fig.add_subplot(1, 2, 2, projection = '3d')
+
+ax.set_xlabel('X1')
+ax.set_ylabel('X2')
+surf = ax.plot_surface(x1, x2, fun_x(x1, x2), cmap='bone')
+ax.plot(x2k, y2k, 'o-')
+ax.plot(1, 0, "ro")
+ax.set_title('Projeção 3D\nFunção Inicial')
 
 plt.show()
