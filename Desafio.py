@@ -43,7 +43,6 @@ while (i < 100):
     i = i + 1
 
     print(i,'//', X1,'//', X2,'//', gk,'//', dk,'//',alpha,'//', norma)
-
 #plotar a função principal
 
 fig = plt.figure(figsize = plt.figaspect(.4))
@@ -68,8 +67,8 @@ ax = fig.add_subplot(1, 2, 2, projection = '3d')
 ax.set_xlabel('X1')
 ax.set_ylabel('X2')
 surf = ax.plot_surface(x1, x2, fun_x(x1, x2), cmap='bone')
-
+ax.plot(x2k, y2k, fun_x(np.asarray(x2k), np.asarray(y2k)), 'o-', color='red', label='Descida do Grandinte')
 ax.plot(1, 0, "ro")
 ax.set_title('Projeção 3D\nFunção Inicial')
-
+plt.legend()
 plt.show()
